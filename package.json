@@ -16,11 +16,23 @@
     "url": "https://github.com/brunoksato/gulp/issues"
   },
   "homepage": "https://github.com/brunoksato/gulp",
+  "jshintConfig": {
+    "boss": true,
+    "node": true,
+    "strict": true,
+    "smarttabs": true,
+    "undef": true,
+    "unused": true,
+    "onecase": true,
+    "lastsemic": true,
+    "newcap": false,
+    "maxlen": 100,
+    "indent": 2
+  },
   "devDependencies": {
     "gulp-livereload": "~0.2.0",
     "gulp-rename": "~0.2.2",
     "tiny-lr": "0.0.5",
-    "gulp-ruby-sass": "~0.2.0",
     "gulp-concat": "~2.1.7",
     "gulp-clean": "~0.2.4",
     "gulp-notify": "~0.4.0",
@@ -29,6 +41,7 @@
     "gulp-autoprefixer": "0.0.5",
     "gulp-cache": "~0.1.1",
     "gulp": "~3.5.0",
-    "gulp-uglify": "~0.2.0"
+    "gulp-uglify": "~0.2.0",
+    "gulp-sass": "~0.6.0"
   }
 }

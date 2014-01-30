@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
+    sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -17,9 +17,8 @@ var gulp = require('gulp'),
 //$ gulp styles
 gulp.task('styles', function() {
   return gulp.src('src/css/main.scss')
-    .pipe(sass({ style: 'expanded' }))
+    .pipe(sass())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest('dist/css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
     .pipe(gulp.dest('dist/css'))
@@ -30,15 +29,19 @@ gulp.task('styles', function() {
 //$ gulp scripts
 gulp.task('scripts', function() {
   return gulp.src('src/js/**/*.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
     .pipe(livereload(server))
     .pipe(notify({ message: 'Scripts task complete' }));
+});
+
+//$ gulp lint
+gulp.task('lint', function(){
+    return gulp.src('src/js/**/*.js')
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'));
 });
 
 // gulp.task('images', function() {
@@ -51,7 +54,7 @@ gulp.task('scripts', function() {
 
 //$ gulp clean
 gulp.task('clean', function() {
-  return gulp.src(['dist/css', 'dist/js', 'dist/img', 'dist/doc'], {read: false})
+  return gulp.src(['dist/css/*', 'dist/js/*', 'dist/img/*', 'dist/doc/*'], {read: false})
     .pipe(clean());
 });
 
